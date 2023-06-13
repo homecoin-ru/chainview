@@ -314,7 +314,7 @@ def stats_page(startblock=None):
     time0, diff0 = res.fetchone()
     dbmax_time = datetime.datetime.fromtimestamp(int(time0))
     dayblock = dbmax - 144
-    weekblock = dbmax - 144*7
+    weekblock = max(dbmax - 144 * 7, 0)  # //!! for small block count
     res = cur.execute('SELECT time,difficulty FROM block WHERE height=?', (dayblock,))
     time1, diff1 = res.fetchone()
     delta = dbmax_time - datetime.datetime.fromtimestamp(int(time1))

@@ -1,17 +1,25 @@
 # Common config for chainview
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 VERSION = '1.1'
-GITHUB = 'https://github.com/bitcoinedu-io/chainview'
+#Original repo GITHUB = 'https://github.com/bitcoinedu-io/chainview'
+GITHUB = 'https://github.com/homecoin-ru/chainview'
 
-DBFILE = 'chainview-db.sqlite3'
+DBFILE = 'homecoin-db.sqlite3'
 
-rpc_user = 'user'
-rpc_pass = 'pass'
-NODEURL = 'http://%s:%s@localhost:8332' % (rpc_user, rpc_pass)
+CHECK_NEW_BLOCK_TIMEOUT_SEC = 100 # delay between checking for new blocks in seconds
+rpc_user = os.environ.get("RPC_USER", "user")
+rpc_pass = os.environ.get("RPC_PASS", "pass")
+rpc_port = os.environ.get("RPC_PORT", "8332")
+
+NODEURL = 'http://%s:%s@localhost:%s' % (rpc_user, rpc_pass, rpc_port)
 
 chaininfo = {
-    'name': 'Bitcoin Edu',
-    'unit': 'BTE'
+    'name': 'Homecoin',
+    'unit': 'HOME'
     }
 
 params = {

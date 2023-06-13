@@ -1,10 +1,18 @@
 # Emacs backup files
 *~
 
+.DS_Store
+.idea
+.env
+
 # Python stuff, Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 
-# Project specific
-chainview-db.sqlite3
 
+# Virtual env
+venv/
+
+#any files
+chainview_developmentrun.bat
+homecoin-db.sqlite3

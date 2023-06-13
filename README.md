@@ -1,5 +1,5 @@
 # chainview
-Block explorer for Bitcoin Edu
+Block explorer for HomeCoin based on Bitcoin Edu Chainview
 
 - Simple implementation relying on the Bitcoin Core node for information
 - Handles 1xxx, 3xxx and bc1-addresses

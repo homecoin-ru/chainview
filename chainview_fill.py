@@ -11,7 +11,7 @@ import datetime
 import requests
 import json
 import sqlite3
-from chainview_config import DBFILE, NODEURL
+from chainview_config import DBFILE, NODEURL, CHECK_NEW_BLOCK_TIMEOUT_SEC
 
 # Make RPC call to local node
 
@@ -68,7 +68,8 @@ def fetchtx(txid):
             spb = vout['scriptPubKey']
             typ = ''
             if spb['type'] != 'nulldata':
-                addr = vout['scriptPubKey']['addresses'][0]
+                # //!!addr = vout['scriptPubKey']['addresses'][0] v 0.22 DEPRECATED, returned only if config option -deprecatedrpc=addresses is passed
+                addr = vout['scriptPubKey']['address']
                 value = vout['value']
             else:
                 addr = 'nulldata'
@@ -207,7 +208,7 @@ while True:
         update_pending()
         if fetch_one_batch():
             update_pending()
-        time.sleep(20)
+        time.sleep(CHECK_NEW_BLOCK_TIMEOUT_SEC)
     except requests.exceptions.ConnectionError:
         print('Cannot contact node. Retry in 2 min...')
         time.sleep(120)
